@@ -101,7 +101,6 @@ void executeShell(int timeout) {
     char minishell[] = "penn-sh# ";
     writeToStdout(minishell);
     char *arg_array = (char*) malloc (1024 * sizeof(char));
-    char *ptr = arg_array;
     char *command;
     command = getCommandFromInput();
 
@@ -160,7 +159,7 @@ void executeShell(int timeout) {
                 }
                 i++ ; 
             }
-            if (execvp(&arg_array[0], ptr) == -1) {
+            if (execvp(&arg_array[0], arg_array) == -1) {
                 perror("Error in execvp");
                 free(command);
                 exit(EXIT_FAILURE);
